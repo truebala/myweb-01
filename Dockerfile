@@ -1,8 +1,5 @@
-FROM tomcat:8-jre11
-
-RUN rm -rf /usr/local/tomcat/webapps/*
-
-COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
-
-EXPOSE 8080
-CMD ["catalina.sh", "run"]
+FROM ubuntu
+RUN apt update -y
+RUN apt install apache2 -y
+COPY index.html /var/www/html
+CMD ["/usr/sbin/apachectl" , "-D" , "FOREGROUND"]
